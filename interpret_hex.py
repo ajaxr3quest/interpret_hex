@@ -23,13 +23,14 @@ def interpret_hex(hex_value):
     # IEEE 754 (32-bit Float)
     float_ieee = struct.unpack('!f', bytes.fromhex(hex_value))[0]
 
-    # Two's Complement (Si es negativo)
-    def twos_complement(value, bits=32):
-        if value < 0:
-            value = (1 << bits) + value
-        return value
 
-    twos_comp = twos_complement(int_signed)
+         
+
+    # Obtener el complemento a dos
+    twos_comp_value = twos_complement(int_signed)
+ 
+    # Convertir a hexadecimal
+    twos_comp_hex = f"{twos_comp_value:08X}"
 
     # Imprimir resultados
     print(f"\n🔎 Interpretación de {hex_value.upper()}:")
@@ -41,7 +42,11 @@ def interpret_hex(hex_value):
     print(f"🔹 Escalado /1000          = {scaled_1000}")
     print(f"🔹 Escalado /10000         = {scaled_10000}")
     print(f"🔹 IEEE 754 Float          = {float_ieee}")
-    print(f"🔹 Two's Complement        = {bin(twos_comp)[2:].zfill(32)} (Binario)")
+    print(f"🔹 Two's Complement (Hex)  = {twos_comp_hex}")
+    
+# Two's Complement (Si es negativo)
+def twos_complement(value):
+    return (1 << 32) + value
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Interpretar un valor hexadecimal de 4 bytes.")
