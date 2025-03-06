@@ -34,7 +34,7 @@ def interpret_hex(hex_value):
 
     # Imprimir resultados
     print(f"\n🔎 Interpretación de {hex_value.upper()}:")
-    print(f"🔹 Signed 32-bit Integer  = {int_signed}")
+    print(f"🔹 Signed 32-bit Integer   = {int_signed}")
     print(f"🔹 Unsigned 32-bit Integer = {int_unsigned}")
     print(f"🔹 Q16.16 Fixed-Point      = {q16_16}")
     print(f"🔹 Escalado /10            = {scaled_10}")
