@@ -2,7 +2,7 @@ import struct
 import argparse
 import re
 
-def interpret_hex(hex_value):
+def interpret_hex(hex_value,extra_info=""):
     # Verificar que el input sea exactamente 8 caracteres hexadecimales
     if not re.fullmatch(r'[0-9A-Fa-f]{8}', hex_value):
         raise ValueError("❌ Error: Debes ingresar exactamente 4 bytes en formato hexadecimal (ejemplo: '3F800000').")
@@ -33,7 +33,7 @@ def interpret_hex(hex_value):
     twos_comp_hex = f"{twos_comp_value:08X}"
 
     # Imprimir resultados
-    print(f"\n🔎 Interpretación de {hex_value.upper()}:")
+    print(f"\n🔎 Interpretación de {hex_value.upper()} - {extra_info}:")
     print(f"🔹 Signed 32-bit Integer   = {int_signed}")
     print(f"🔹 Unsigned 32-bit Integer = {int_unsigned}")
     print(f"🔹 Q16.16 Fixed-Point      = {q16_16}")
@@ -54,6 +54,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     try:
-        interpret_hex(args.hex_value)
+        #big endian
+        interpret_hex(args.hex_value,"Big Endian")
+        #interpreta el valor como little endian
+        hex_little_endian = args.hex_value[6:8] + args.hex_value[4:6] + args.hex_value[2:4] + args.hex_value[0:2]
+        interpret_hex(hex_little_endian,"Little Endian")
     except ValueError as e:
         print(f"{e}")
