@@ -1,5 +1,5 @@
 # Descripción
-Convierte un hex de 4 bytes a un int signed de 32 bit y lo interpreta de varias formas:
+Convierte un hex de 4 bytes a:
 - Int Signed 32 bits
 - Q16.16 fixed-point
 - Divisibles por 10
